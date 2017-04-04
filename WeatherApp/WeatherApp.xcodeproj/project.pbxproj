@@ -14,6 +14,7 @@
 		79161AA91E895F700003926D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79161AA81E895F700003926D /* Assets.xcassets */; };
 		79161AAC1E895F700003926D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79161AAA1E895F700003926D /* LaunchScreen.storyboard */; };
 		7965991A1E89BDF100A3CFBE /* CellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796599191E89BDF100A3CFBE /* CellViewController.swift */; };
+		79A819081E926D55006D69F5 /* rain-2179933_1920.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 79A819071E926D55006D69F5 /* rain-2179933_1920.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		79161AAB1E895F700003926D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		79161AAD1E895F700003926D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		796599191E89BDF100A3CFBE /* CellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellViewController.swift; sourceTree = "<group>"; };
+		79A819071E926D55006D69F5 /* rain-2179933_1920.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "rain-2179933_1920.jpg"; path = "../../../../Downloads/rain-2179933_1920.jpg"; sourceTree = "<group>"; };
 		C59C791CF31B7CAA5C340467 /* Pods_WeatherApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -79,6 +81,7 @@
 				79161AAA1E895F700003926D /* LaunchScreen.storyboard */,
 				79161AAD1E895F700003926D /* Info.plist */,
 				796599191E89BDF100A3CFBE /* CellViewController.swift */,
+				79A819071E926D55006D69F5 /* rain-2179933_1920.jpg */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -154,6 +157,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79A819081E926D55006D69F5 /* rain-2179933_1920.jpg in Resources */,
 				79161AAC1E895F700003926D /* LaunchScreen.storyboard in Resources */,
 				79161AA91E895F700003926D /* Assets.xcassets in Resources */,
 				79161AA71E895F700003926D /* Main.storyboard in Resources */,

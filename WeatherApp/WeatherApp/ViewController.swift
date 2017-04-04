@@ -10,45 +10,36 @@ import UIKit
 import DarkSkyKit
 import ForecastIO
 import Alamofire
+import MapKit
 
-class ViewController: UIViewController, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDataSource, CLLocationManagerDelegate {
     
-    @IBOutlet weak var timezoneLabel: UILabel!
+    
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tempLabel: UILabel!
+    @IBOutlet weak var timezoneLabel: UILabel!
     
- 
+    var locationManager = CLLocationManager()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.dataSource = self
         
+        //Geolocalisation 
         
-        /*
-         let client = DarkSkyClient(apiKey: "Votre-Key")
-        client.units = .auto
-        client.language = .french
-        client.getForecast(latitude: 37.8267, longitude: -122.4233) { result in
-            switch result {
-            case .success(let forecast, let requestMetadata):
-                
-                
-                //print(forecast.hourly!.data)
-                for i in 0...24 // Pour afficher toutes les valeurs => forecast.hourly!.data.count à la place de 24
-                {
-                    print(forecast.hourly!.data[i].temperature!)
-                }
-                //print(requestMetadata)
-                
-         
-         
-            case .failure(let error):
-                print(error)
-            }
-        }
-         */
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
         
         
     }
+    
+   
+    
     
     //UITableViewDataSource => Les functions vont gerer le TableView et indiquer l'enssemble des parametre du TableView telle que le nombre de row et les donnés à inserer dans notre cas les temperature heure par heure.
     
@@ -61,13 +52,16 @@ class ViewController: UIViewController, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+      
+        
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         
-        let client = DarkSkyClient(apiKey: "Votre-Key")
-        client.units = .auto
+        let client = DarkSkyClient(apiKey: "Votre Key")
+        client.units = .si
         client.language = .french
-        client.getForecast(latitude: 48.869505, longitude: 2.285025) { result in
+        client.getForecast(latitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!) { result in
             switch result {
             case .success(let forecast, let requestMetadata):
                 
@@ -77,29 +71,33 @@ class ViewController: UIViewController, UITableViewDataSource {
                 {
                     print(forecast.hourly!.data[i].temperature!)
                 }
-
                 
-                self.timezoneLabel.text = "\("Time Zone :") \(forecast.timezone)"
                 
+                let tempInt:Int = Int((forecast.currently?.temperature!)!)
+                self.tempLabel.text = "\(tempInt)\("°C")"
+                
+                self.timezoneLabel.text = "\(forecast.timezone)"
+        
                 cell.textLabel?.numberOfLines = 4 // Affiche plusieur ligne pour chaque Cell
                 cell.textLabel?.text = "\("Time:") \(forecast.hourly!.data[indexPath.row].time) \("\n") \("Temperature : ") \(forecast.hourly!.data[indexPath.row].temperature!) \(" °C")" // Le resultat de la cellule est entre "\()" car c'est un type Int et la cell attend un String.
-            
+                
                 
             case .failure(let error):
                 print(error)
             }
         }
         
+        
         return cell
-    
+        
     }
-
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
 }
 
